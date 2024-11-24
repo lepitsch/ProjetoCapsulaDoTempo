@@ -5,6 +5,7 @@ import { SignIn } from "@/components/SignIn";
 import type { Metadata } from "next";
 import { Bai_Jamjuree as BaiJamjuree, Roboto_Flex as Roboto } from 'next/font/google';
 import { cookies } from "next/headers";
+import { ReactNode } from "react";
 import "./globals.css";
 
 const roboto = Roboto({ subsets: ['latin'], variable: '--font-roboto' })
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
   description: "Uma cápsula do tempo para armazenar memórias",
 };
 
-export default function RootLayout({children,}: Readonly<{children: React.ReactNode;}>) {
+export default function RootLayout({children}: {children: ReactNode}) {
   const isAuthenticated = cookies().has('token')
 
   return (

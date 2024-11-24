@@ -1,4 +1,4 @@
-import { default as decode } from 'jwt-decode'
+import { jwtDecode } from 'jwt-decode'
 import { cookies } from 'next/headers'
 
 interface User {
@@ -14,7 +14,7 @@ export function getUser(): User {
     throw new Error ('Unauthenticated.')
   }
 
-  const user: User = decode(token)
+  const user: User = jwtDecode(token)
 
   return user
 }
