@@ -40,7 +40,7 @@ export default function RootLayout({children,}: Readonly<{children: React.ReactN
           </div>
 
           {/*Direita*/}
-          <div className="flex flex-col p-16">
+          <div className="flex flex-col overflow-y-scroll max-h-screen">
           {children}
           </div>
         </main>

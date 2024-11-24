@@ -1,4 +1,4 @@
-import decode from 'jwt-decode'
+import { default as decode } from 'jwt-decode'
 import { cookies } from 'next/headers'
 
 interface User {
