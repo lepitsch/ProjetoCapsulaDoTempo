@@ -17,13 +17,13 @@ interface Memory {
 }
 
 export default async function Home() { 
-  const isAuthenticaded = cookies().has('token')
+  const isAuthenticaded = (await cookies()).has('token')
 
   if (!isAuthenticaded) {
     return <EmptyMemories />
   }
 
-  const token = cookies().get('token')?.value
+  const token = (await cookies()).get('token')?.value
   const response = await api.get('/memories', {
     headers: {
       Authorization: `Bearer ${token}`,

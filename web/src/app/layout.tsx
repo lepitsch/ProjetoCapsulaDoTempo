@@ -16,8 +16,8 @@ export const metadata: Metadata = {
   description: "Uma cápsula do tempo para armazenar memórias",
 };
 
-export default function RootLayout({children}: {children: ReactNode}) {
-  const isAuthenticated = cookies().has('token')
+export default async function RootLayout({children}: {children: ReactNode}) {
+  const isAuthenticated = (await cookies()).has('token')
 
   return (
     <html lang="en">
