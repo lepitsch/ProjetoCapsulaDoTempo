@@ -32,8 +32,8 @@ app.register(memoriesRoutes)
 
 app
   .listen({
-  port: 3333,
+  port: Number(process.env.PORT) || 3333,
   })
   .then(() => {
-  console.log('👩🏽‍💻HTTP server running on http://localhost:3333')
+  console.log(`👩🏽‍💻HTTP server running on http://localhost:${process.env.PORT}`)
   })
