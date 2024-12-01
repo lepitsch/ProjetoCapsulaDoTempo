@@ -34,9 +34,19 @@ app.register(authRoutes)
 app.register(uploadRoutes)
 app.register(memoriesRoutes)
 
-app
+/*app
   .listen({
   port: Number(process.env.PORT) || 3333,
+  })
+  .then(() => {
+  console.log(`👩🏽‍💻HTTP server running on http://localhost:${process.env.PORT}`)
+  console.log("oi")
+  }) */
+
+  app
+  .listen({
+  port: Number(process.env.PORT) || 3333,
+  host: process.env.HOST || '0.0.0.0',
   })
   .then(() => {
   console.log(`👩🏽‍💻HTTP server running on http://localhost:${process.env.PORT}`)
