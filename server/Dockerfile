@@ -15,5 +15,8 @@ COPY . .
 # Gera os arquivos do Prisma
 RUN npx prisma generate
 
+# Expõe a porta 3333 (boa prática)
+EXPOSE 3333
+
 # Define o comando padrão
 CMD ["npm", "run", "dev"]
