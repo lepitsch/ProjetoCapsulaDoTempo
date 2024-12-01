@@ -26,6 +26,10 @@ app.register(jwt, {
   secret: 'capsula'
 })
 
+app.get('/health', async (request, reply) => {
+  return { status: 'online' }
+})
+
 app.register(authRoutes)
 app.register(uploadRoutes)
 app.register(memoriesRoutes)
