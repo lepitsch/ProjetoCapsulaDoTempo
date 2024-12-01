@@ -34,6 +34,11 @@ app.register(authRoutes)
 app.register(uploadRoutes)
 app.register(memoriesRoutes)
 
+app.setErrorHandler((error, request, reply) => {
+  console.error(error) // Log do erro
+  reply.status(500).send({ message: 'Ocorreu um erro interno no servidor.' })
+})
+
 /*app
   .listen({
   port: Number(process.env.PORT) || 3333,
