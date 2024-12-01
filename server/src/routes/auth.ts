@@ -54,7 +54,7 @@ export async function authRoutes(app: FastifyInstance) {
         data: {
           githubId: userInfo.id,
           login: userInfo.login,
-          name: userInfo.name,
+          name: userInfo.login,
           avatarUrl: userInfo.avatar_url,
         },
       })
