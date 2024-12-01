@@ -40,4 +40,5 @@ app
   })
   .then(() => {
   console.log(`👩🏽‍💻HTTP server running on http://localhost:${process.env.PORT}`)
+  console.log("oi")
   })
