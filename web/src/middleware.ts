@@ -11,7 +11,7 @@ export function middleware(request: NextRequest) {
 
     redirectResponse.headers.set(
       'Set-Cookie',
-      `redirectTo=${request.url}; Path=/; HttpOnly; Secure; max-age=300;`
+      `redirectTo=${request.url}; Path=/; HttpOnly; Secure; max-age=300;`,
     );
 
     return redirectResponse;
