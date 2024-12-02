@@ -19,7 +19,7 @@ app.register(require('@fastify/static'), {
 })
 
 app.register(cors, {
-  origin: true, // todas URLs de front end podem acessar o backend, em produção ficaria ['http://localhost:3333' , 'http:// site']
+  origin: 'https://projeto-capsula-do-tempo.vercel.app', // todas URLs de front end podem acessar o backend, em produção ficaria ['http://localhost:3333' , 'http:// site']
 })
 
 app.register(jwt, {
