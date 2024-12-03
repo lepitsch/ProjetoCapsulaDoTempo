@@ -13,14 +13,15 @@ const app = fastify()
 
 app.register(multipart)
 
+app.register(cors, {
+  origin: '*',
+})
+
 app.register(require('@fastify/static'), {
   root: resolve(__dirname,'../uploads'),
   prefix: '/uploads',
 })
 
-app.register(cors, {
-  origin: 'https://projeto-capsula-do-tempo.vercel.app', // todas URLs de front end podem acessar o backend, em produção ficaria ['http://localhost:3333' , 'http:// site']
-})
 
 app.register(jwt, {
   secret: 'capsula'
