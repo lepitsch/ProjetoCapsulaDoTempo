@@ -27,6 +27,10 @@ app.register(jwt, {
   secret: 'capsula'
 })
 
+app.get('/', async (request, reply) => {
+  return { status: 'online' }
+})
+
 app.get('/health', async (request, reply) => {
   return { status: 'online' }
 })
