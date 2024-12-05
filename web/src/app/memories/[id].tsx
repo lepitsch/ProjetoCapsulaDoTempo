@@ -12,10 +12,10 @@ export default function MemoryDetail() {
   useEffect(() => {
     if (id) {
       // Busca a memória no backend
-      fetch(`/api/memories/${id}`, {
+      fetch(`/routes/memories/${id}`, {
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${'token'}`, // Substitua com sua lógica de autenticação
+          Authorization: `Bearer ${'token'}`, 
         },
       })
         .then((res) => {
