@@ -12,7 +12,7 @@ dayjs.locale(ptBr)
 interface Memory {
   id: string
   coverUrl: string
-  excerpt: string
+  content: string
   createdAt: string
 }
 
@@ -46,7 +46,7 @@ export default async function Home() {
             </time>
             <Image src={memory.coverUrl} width={592} height={280} className='w-full aspect-video object-cover rounded-lg' alt=""/>
             <p className='text-lg leading-relaxed text-gray-100'>
-              {memory.excerpt}
+              {memory.content}
             </p>
             <Link href={`/memories/${memory.id}`} className='flex items-center gap-2 text-sm text-gray-200 hover:text-gray-100'>
               Ler mais 
