@@ -1,5 +1,16 @@
+import dayjs from 'dayjs';
+import { ArrowRight } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+
+interface Memory {
+  id: string
+  coverUrl: string
+  excerpt: string
+  createdAt: string
+}
 
 export default function MemoryDetail() {
   const router = useRouter();
@@ -12,7 +23,7 @@ export default function MemoryDetail() {
   useEffect(() => {
     if (id) {
       // Busca a memória no backend
-      fetch(`/routes/memories/${id}`, {
+      fetch(`/memories/${id}`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${'token'}`, 
@@ -48,23 +59,27 @@ export default function MemoryDetail() {
     return <p>Memória não encontrada.</p>;
   }
 
+  const memories: Memory[] = response.data
+
   return (
-    <div className="container mx-auto mt-10 p-4 bg-gray-800 rounded-lg shadow-md">
-      <h1 className="text-2xl font-bold text-white">{memory.title || 'Memória'}</h1>
-      <p className="mt-4 text-gray-300">{memory.content}</p>
-      {memory.imageUrl && (
-        <img
-          src={memory.imageUrl}
-          alt="Imagem da Memória"
-          className="mt-4 rounded-lg w-full"
-        />
-      )}
-      <button
-        onClick={() => router.back()}
-        className="mt-6 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-      >
-        Voltar
-      </button>
+    <div className='flex flex-col gap-10 p-8'>
+      {memories.map(memory => {
+        return (
+          <div key={memory.id} className='space-y-4'>
+            <time className='flex items-center gap-2 text-sm text-gray-100 -ml-8 before:h-px before:w-5 before:bg-gray-50'>
+              {dayjs(memory.createdAt).format('D[ de ]MMMM[, ]YYYY')}
+            </time>
+            <Image src={memory.coverUrl} width={592} height={280} className='w-full aspect-video object-cover rounded-lg' alt=""/>
+            <p className='text-lg leading-relaxed text-gray-100'>
+              {memory.excerpt}
+            </p>
+            <Link href={`/memories/${memory.id}`} className='flex items-center gap-2 text-sm text-gray-200 hover:text-gray-100'>
+              Ler mais 
+              <ArrowRight className='w-4 h-4' />
+            </Link>
+          </div>
+        )
+      })}
     </div>
-  );
+  )
 }
