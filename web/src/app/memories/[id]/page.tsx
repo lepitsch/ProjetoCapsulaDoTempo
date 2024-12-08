@@ -12,7 +12,7 @@ export default async function MemoryPage({ params }: { params: { id: string } })
   }
 
   try {
-    const { id } = await params
+    const { id } = params
 
     const response = await api.get(`/memories/${id}`, {
       headers: {
