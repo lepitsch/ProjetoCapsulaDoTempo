@@ -2,8 +2,10 @@ import { EmptyMemories } from '@/components/EmptyMemories'
 import { api } from '@/lib/api'
 import dayjs from 'dayjs'
 import ptBr from 'dayjs/locale/pt-br'
+import { ArrowRight } from 'lucide-react'
 import { cookies } from 'next/headers'
 import Image from 'next/image'
+import Link from 'next/link'
 
 dayjs.locale(ptBr)
 
@@ -12,6 +14,7 @@ interface Memory {
   coverUrl: string
   content: string
   createdAt: string
+  excerpt: string
 }
 
 export default async function Home() { 
@@ -44,9 +47,12 @@ export default async function Home() {
             </time>
             <Image src={memory.coverUrl} width={592} height={280} className='w-full aspect-video object-cover rounded-lg' alt=""/>
             <p className='text-lg leading-relaxed text-gray-100'>
-              {memory.content}
+              {memory.excerpt}
             </p>
-
+            <Link href={`/memories/${memory.id}`} className='flex items-center gap-2 text-sm text-gray-200 hover:text-gray-100'>
+              Ler mais 
+              <ArrowRight className='w-4 h-4' />
+            </Link>
            
           </div>
         )
