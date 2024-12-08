@@ -3,7 +3,7 @@ import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import MemoryDetails from './MemoryDetails'
 
-export default async function MemoryPage({ params }: { params: { id: string } }) {
+export default async function MemoryPage({ params }: { params: any }) {
   const cookieStore = await cookies()
   const token = cookieStore.get('token')?.value
 
