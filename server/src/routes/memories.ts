@@ -7,7 +7,6 @@ export async function memoriesRoutes(app: FastifyInstance) {
     await request.jwtVerify()
   })
 
-  {/* Listagem */}
   app.get('/memories', async (request) => {
 
     const memories = await prisma.memory.findMany({
@@ -27,7 +26,6 @@ export async function memoriesRoutes(app: FastifyInstance) {
     })
   })
   
-  {/* Detalhe de uma memória */}
   app.get('/memories/:id', async (request, reply) => {
     const paramsSchema = z.object({
       id: z.string().uuid(),
@@ -48,7 +46,6 @@ export async function memoriesRoutes(app: FastifyInstance) {
     return memory
   })
 
-  {/* Criação de uma memória */}
   app.post('/memories', async (request) => {
     const bodySchema = z.object({
       content: z.string(),
@@ -70,7 +67,6 @@ export async function memoriesRoutes(app: FastifyInstance) {
     return memory
   })
 
-  {/* Atualização de uma memória */}
   app.put('/memories/:id', async (request, reply) => {
     const paramsSchema = z.object({
       id: z.string().uuid(),
@@ -79,9 +75,9 @@ export async function memoriesRoutes(app: FastifyInstance) {
     const { id } = paramsSchema.parse(request.params)
 
     const bodySchema = z.object({
-      content: z.string(),
-      coverUrl: z.string(),
-      isPublic: z.coerce.boolean().default(false),
+      content: z.string().optional(),
+      coverUrl: z.string().optional(),
+      isPublic: z.coerce.boolean().default(false).optional(),
     })
 
     const { content, coverUrl, isPublic } = bodySchema.parse(request.body)
@@ -110,7 +106,6 @@ export async function memoriesRoutes(app: FastifyInstance) {
     return memory
   })
   
-  {/* Exclusão de uma memória */}
   app.delete('/memories/:id', async (request, reply) => {
     const paramsSchema = z.object({
       id: z.string().uuid(),
