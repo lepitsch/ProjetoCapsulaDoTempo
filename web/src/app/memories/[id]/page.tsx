@@ -1,28 +1,32 @@
-import { api } from '@/lib/api'
-import { cookies } from 'next/headers'
-import { redirect } from 'next/navigation'
-import MemoryDetails from './MemoryDetails'
+import { api } from '@/lib/api';
+import { cookies } from 'next/headers'; // Para obter cookies na app directory
+import { redirect } from 'next/navigation';
+import MemoryDetails from './MemoryDetails';
 
-export default async function MemoryPage({ params }: { params: { id: string } }) {
-  const cookieStore = await cookies()
-  const token = cookieStore.get('token')?.value
+interface MemoryPageProps {
+  params: { id: string };
+}
 
-  if (!token) { 
-    return redirect('/')
+export default async function MemoryPage({ params }: MemoryPageProps) {
+  const cookieStore = await cookies();
+  const token = cookieStore.get('token')?.value;
+
+  if (!token) {
+    return redirect('/');
   }
 
   try {
-    const { id } = params
+    const { id } = params; // Aqui não é necessário usar `await`, porque `params` já é um objeto
 
     const response = await api.get(`/memories/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    })
+    });
 
-    return <MemoryDetails memory={response.data} token={token} />
+    return <MemoryDetails memory={response.data} token={token} />;
   } catch (error) {
-    console.error('Erro ao buscar memória:', error)
-    return redirect('/')
+    console.error('Erro ao buscar memória:', error);
+    return redirect('/');
   }
 }
